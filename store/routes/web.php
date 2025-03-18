@@ -8,8 +8,13 @@ Route::get('/', [GamesController::class, 'welcome'])->name('welcome');
 
 Route::get('/games', [GamesController::class, 'index'])->name('games.index');
 
+Route::fallback(function () {
+    return redirect()->route('welcome');
+});
+
 Route::middleware('auth')->group(function () {
-    Route::get('/game-register', [GamesController::class, 'create'])->name('game.register');
+    Route::view('/game-register', 'games.create')->name('game.register');
+    Route::post('/game-register', [GamesController::class, 'store'])->name('games.store');
 });
 
 Route::get('/dashboard', function () {

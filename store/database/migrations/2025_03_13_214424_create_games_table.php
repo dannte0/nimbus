@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->string('genre');
             $table->text('cover_image');
-            $table->text('banner_image')->nullable();
-            $table->date('release_date');
+            $table->text('developer');
+            $table->text('publisher');
+            $table->text('banner_image')->nullable()->default(null);
             $table->timestamps();
         });
     }
