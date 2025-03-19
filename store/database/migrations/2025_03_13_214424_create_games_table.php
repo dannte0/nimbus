@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('genre');
-            $table->text('cover_image');
             $table->text('developer');
             $table->text('publisher');
+            $table->string('cover_image')->nullable();
             $table->text('banner_image')->nullable()->default(null);
             $table->timestamps();
         });

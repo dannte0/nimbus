@@ -14,7 +14,7 @@ Route::fallback(function () {
 
 Route::middleware('auth')->group(function () {
     Route::view('/game-register', 'games.create')->name('game.register');
-    Route::post('/game-register', [GamesController::class, 'store'])->name('games.store');
+    Route::post('/games', [GamesController::class, 'store'])->name('games.store');
 });
 
 Route::get('/dashboard', function () {

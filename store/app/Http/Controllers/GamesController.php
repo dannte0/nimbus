@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Carbon\Carbon;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,11 +49,35 @@ class GamesController extends Controller
             'title' => ['required', 'max:40', 'min:3', 'unique:'. Game::class],
             'description' => ['required', 'min:200', 'max:350'],
             'genre' => ['required', 'max:150', 'min:3'],
+            'developer' => ['required', 'max:150', 'min:3'],
+            'publisher' => ['required', 'max:150', 'min:3'],
             'isforkids' => ['required', 'boolean'],
             'agerating' => ['required', 'max:50'],
             'cover_image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'banner_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
+
+        $validated['publisher'] = Auth::user()->name;
+        $validated['developer'] = Auth::user()->name;
+
+      // Cria uma instância do Cloudinary
+      $cloudinary = new Cloudinary([
+        'cloud' => [
+            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_secret' => env('CLOUDINARY_API_SECRET'),
+        ],
+    ]);
+
+    // Upload da imagem de capa (coverimage)
+    if ($request->hasFile('cover_image')) {
+        $uploadedCoverImage = $cloudinary->uploadApi()->upload($request->file('cover_image')->getRealPath(), [
+            'folder' => 'games/covers', // Pasta onde o arquivo será salvo
+            'upload_preset' => env('CLOUDINARY_UPLOAD_PRESET', 'laravel_upload') // Upload Preset
+        ]);
+        $validated['cover_image'] = $uploadedCoverImage['secure_url']; // Salva a URL da imagem
+    }
+
 
         $game = Game::create($validated);
 

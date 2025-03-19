@@ -9,10 +9,10 @@ class Game extends Model
 {
     protected $fillable = [
         'title',
-        'genre',
-        'publisher',
-        'developer',
         'description',
+        'genre',
+        'developer',
+        'publisher',
         'cover_image',
         'banner_image',
         'is_for_kids',

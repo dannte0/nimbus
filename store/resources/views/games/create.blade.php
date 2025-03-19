@@ -5,21 +5,21 @@
 @section('content')
     <body class="register">
         <div class="container">
-                <form method="POST" action="{{ route('games.store')}}" class="form">
+                <form method="POST" action="{{ route('games.store')}}" class="form" enctype="multipart/form-data">
+                @csrf
                 <div class="group">
                 <h1>Register your game!</h1>
                 <h5>Type a little bit about your game.</h5>
-                <img id="blah" class="image" src="{{ './img/assets/imagegame.png' }}" />
+                <img id="blah" class="image"/>
                 <p>Choice a cover to the game</p>
-                
-                <input type="file" accept="img/*" class="form-control my-5 w-75" name="coverimage" id="imgInp">
+                <p class="text-light">{{ $errors }}</p>
+                <input type="file" accept="img/*" class="form-control my-5 w-75" name="cover_image" id="imgInp">
                 @error('coverimage')
                 <span style="color: #ff0000">{{ $message }}</span>
                 @enderror
                 </div>
                 <div class="group">
                     
-                        @csrf
                             <label for="Title">Title:</label>
                             <input class="form-control" type="text" placeholder="" name="title">
                             @error('title')
@@ -68,10 +68,10 @@
                             </div>
                             @error('agerating')
                             <span style="color: #ff0000">{{ $message }}</span>
-                            @enderror
-
-                            <input class="form-control" type="hidden" placeholder="" name="publisher" value="{{ Auth::user()->name }}">
-                            <input class="form-control" type="hidden" placeholder="" name="developer" value="{{ Auth::user()->name }}">
+                            @enderror       
+                            
+                            <input class="form-control" type="text" placeholder="" name="publisher" value="{{ Auth::user()->name }}">
+                            <input class="form-control" type="text" placeholder="" name="developer" value="{{ Auth::user()->name }}">
 
                             <button class="btn btn-primary mt-5 float-end" type="submit">Submit</button>
 
