@@ -1,12 +1,11 @@
 @extends('layouts.main')
 
-@section('title', 'Welcome')
+@section('title', 'Games')
 
 @section('content')
-@foreach ($games as $game )
-
-<img src="{{ $game->cover_image}}" alt="">
-<p>{{ $game->title }}</p>
-    
-@endforeach
+<div class="index">
+    <div class="row">
+        @include('components.card')
+    </div>
+</div>
 @endsection

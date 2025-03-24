@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <img id="blah" class="image"/>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

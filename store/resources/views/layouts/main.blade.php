@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ './img/assets/favicon.ico' }}" />
+    <link rel="shortcut icon" href="{{ asset('./img/assets/favicon.ico') }}" />
     <title>@yield('title')</title>
     <!-- Links -->
         <!-- CSS -->
-         <link rel="stylesheet" href="{{'./css/styles.css'}}">
+         <link rel="stylesheet" href="{{ asset('./css/styles.css') }}">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!-- Icons -->
@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #1A1A1A">
   <div class="container-fluid">
-  <a class="navbar-brand p-0" href="{{ route('games.index') }}"><img src="{{ './img/assets/logoazul.png'}}" height="80px" alt="nimbus"></a>
+  <a class="navbar-brand p-0" href="{{ route('welcome') }}"><img src="{{ asset('./img/assets/logoazul.png')}}" height="80px" alt="nimbus"></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,10 +35,10 @@
         </li>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('games.index') }}">About</a>
+          <a class="nav-link" href="{{ route('about') }}">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('games.index') }}">Suport</a>
+          <a class="nav-link" href="{{ route('suport') }}">Suport</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -59,7 +59,7 @@
     @auth
         <li class="nav-item dropdown px-4 me-5 ">
           <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{{ './img/celeste.png' }}" class="user-picture" alt="perfil">
+          <img src="{{ Auth::user()->image }}" class="user-picture" alt="profile">
           {{ Auth::user()->name }}
           </a>
           <ul class="dropdown-menu" style="background-color: #1A1A1A;">

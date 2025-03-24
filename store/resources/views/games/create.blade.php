@@ -5,46 +5,57 @@
 @section('content')
     <body class="register">
         <div class="container">
-                <form method="POST" action="{{ route('games.store')}}" class="form" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('games.store')}}" id="myForm" class="form" enctype="multipart/form-data">
                 @csrf
                 <div class="group">
                 <h1>Register your game!</h1>
                 <h5>Type a little bit about your game.</h5>
                 <img id="blah" class="image"/>
-                <p>Choice a cover to the game</p>
-                <p class="text-light">{{ $errors }}</p>
-                <input type="file" accept="img/*" class="form-control my-5 w-75" name="cover_image" id="imgInp">
-                @error('coverimage')
-                <span style="color: #ff0000">{{ $message }}</span>
+                @error('cover_image')
+                <p>
+                    <span style="color: #ff0000">{{ $message }}</span>
+                </p>
                 @enderror
+                <p>Choice a cover to the game</p>
+                
+                <input type="file" accept="img/*" class="form-control my-5 w-75" name="cover_image" id="imgInp">
                 </div>
                 <div class="group">
                     
                             <label for="Title">Title:</label>
-                            <input class="form-control" type="text" placeholder="" name="title">
+                            <input class="form-control" type="text" placeholder="" name="title" value="{{ old('title') }}">
                             @error('title')
+                            <p>
                                 <span style="color: #ff0000">{{ $message }}</span>
+                            </p>
                             @enderror
                         
                             <label for="Description">Description:</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"> {{ old('description') }}</textarea>
                             @error('description')
-                            <span style="color: #ff0000">{{ $message }}</span>
+                            <p>
+                                <span style="color: #ff0000">{{ $message }}</span>
+                            </p>
                             @enderror
                         
                             <label for="Publisher">Genre:</label>
-                            <input class="form-control" type="text" placeholder="" name="genre">
+                            <input class="form-control" type="text" placeholder="" name="genre" value="{{ old('genre') }}">
                             @error('genre')
-                            <span style="color: #ff0000">{{ $message }}</span>
+                            <p>
+                                <span style="color: #ff0000">{{ $message }}</span>
+                            </p>
                             @enderror
                             
                             <div class="form-check form-switch mt-4">
                             <label for="Publisher">Can it be recommended for kids?</label>
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked name="isforkids">
+                            <input type="hidden" id="switchValue" name="isforkids" value="0">
+
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked name="isforkids" value="1">
                             @error('isforkids')
-                            <span style="color: #ff0000">{{ $message }}</span>
+                            <p>
+                                <span style="color: #ff0000">{{ $message }}</span>
+                            </p>
                             @enderror
-                            <input type="hidden" id="switchValue" name="isforkids" value="1">
                             </div>
 
                             <input type="hidden" id="switchValueAgeRating" name="agerating" value="everyone">
@@ -67,11 +78,12 @@
                                 </div>
                             </div>
                             @error('agerating')
-                            <span style="color: #ff0000">{{ $message }}</span>
+                            <p>
+                                <span style="color: #ff0000">{{ $message }}</span>
+                            </p>
                             @enderror       
-                            
-                            <input class="form-control" type="text" placeholder="" name="publisher" value="{{ Auth::user()->name }}">
-                            <input class="form-control" type="text" placeholder="" name="developer" value="{{ Auth::user()->name }}">
+                            <input type="hidden" placeholder="" name="publisher" value="{{ Auth::user()->name }}">
+                             <input type="hidden" placeholder="" name="developer" value="{{ Auth::user()->name }}">
 
                             <button class="btn btn-primary mt-5 float-end" type="submit">Submit</button>
 

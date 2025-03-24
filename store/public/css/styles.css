@@ -25,6 +25,12 @@
     border: none; /* Remove a borda padrão */
 }
 
+.card:hover {
+    transform: translateX(-10px) translateY(-10px);
+    background-color: #2b2a2a !important;
+    transition: transform 0.3s ease-in-out  ;
+    transition: background-color 0.3s ease-in-out;
+}
 
 .nav-item > .nav-link {
     font-family: 'Poppins';
@@ -33,10 +39,11 @@
 .nav-item > .nav-link:hover {
     color: #5985e8;
 }
-.card-body > .title {
+.card-body > h1 {
     font-family: 'Poppins';
     color: #F4F4F4;
-    font-size: 1rem;
+    font-weight: 600;
+    font-size: 1.4rem;
 }
 .card > .desc {
     font-family: 'Poppins';
@@ -82,6 +89,7 @@
 }
 .form { 
     display: flex;
+    border-radius: 10px;
     margin: 0 0 0 0;
     padding: 0px 100px;
     align-items: center;
@@ -116,9 +124,104 @@ h1, h5 {
     font-family: 'Poppins';
     color: #ffffff;
 }
+.welcome {
+    background-color: #000000;
+}
+
 .welcome > .container {
     display: flex;
     height: 80vh;
     align-items: start;
     justify-content: center;
+}
+
+/*card */
+.truncate-multiline {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card img {
+    object-fit: cover;
+    width: 200px;
+    height: 250px;
+}
+
+
+#container-show {
+    margin-top: 100px;
+    background-color: #1A1A1A;
+    padding: 20px;
+    display: flex;
+    align-items: center; 
+    border-radius: 8px;
+}
+
+
+#container-show img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    margin-right: 20px;
+    display: block;
+}
+.text-content {
+    display: flex;
+    flex-direction: column; 
+}
+#container-show h1 {
+    color: #FFFFFF;
+    font-family: 'Poppins';
+    margin: 0;
+    white-space: nowrap; 
+}
+
+#container-show p.desc {
+    color: #CCCCCC; 
+    font-family: 'Poppins';
+    text-align: justify;
+    margin: 0;
+}
+
+#dashboard-card {
+    margin: 50px 20px 0 0;
+    width: 500px;
+    background-color: #1A1A1A;
+    padding: 20px 45px 45px 45px;
+    border-radius: 30px;
+}
+#dashboard-card:hover {
+    transform: translateY(-30px);
+    transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave */
+    background-color: #2b2a2a;
+}
+
+#dashboard-card div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#dashboard-card img {
+    object-fit: cover;
+    height: 250px;
+    width: 200px;
+    border-radius: 5px;
+}
+#dashboard-card h1 {
+    margin-top: 10px;
+    color: #FFFFFF;
+    font-size: 1.7rem;
+}
+#dashboard-card p {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+.index {
+    height: 100vh ;
+    background-color: #000000;
 }

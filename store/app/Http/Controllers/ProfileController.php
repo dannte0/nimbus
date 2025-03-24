@@ -14,6 +14,19 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+    public function index(Request $request): View
+    {
+   
+        $user = Auth::user();
+
+        $games = $user->games;
+
+        return view('dashboard', [
+            'games' => $games
+        ]);
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [

@@ -1,48 +1,47 @@
-imgInp.onchange = evt => {
-  const [file] = imgInp.files
-  if (file) {
-    blah.src = URL.createObjectURL(file)
-  }
+// Função para pré-visualizar a imagem de capa
+const imgInp = document.getElementById('imgInp');
+const blah = document.getElementById('blah');
+
+if (imgInp && blah) {
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files;
+        if (file) {
+            blah.src = URL.createObjectURL(file);
+        }
+    };
 }
 
-document.getElementById('flexSwitchCheckChecked').addEventListener('change', function() {
-  const additionalOptions = document.getElementById('additionalOptions');
-  if (this.checked) {
-    additionalOptions.style.display = 'none'; // Esconde as opções
-  } else {
-      additionalOptions.style.display = 'block'; // Mostra as opções
-
-  }
+document.getElementById("myForm").addEventListener("submit", function () {
+    document.getElementById("switchValue").value = document.getElementById("flexSwitchCheckChecked").checked ? "1" : "0";
 });
 
-// Verifica o estado inicial do switch ao carregar a página
-window.addEventListener('load', function() {
-  const switchElement = document.getElementById('flexSwitchCheckChecked');
-  const additionalOptions = document.getElementById('additionalOptions');
-  if (!switchElement.checked) {
-      additionalOptions.style.display = 'none'; // Esconde as opções se o switch estiver desativado
-  }
-});
-
+// Função para manipular o switch "isforkids"
 const switchElement = document.getElementById('flexSwitchCheckChecked');
-const switchValueInput = document.getElementById('switchValue');
+const additionalOptions = document.getElementById('additionalOptions');
+const hiddenInput = document.getElementById('switchValue');
 
+if (switchElement && additionalOptions && hiddenInput) {
+    // Verifica o estado inicial do switch ao carregar a página
+    window.addEventListener('load', function () {
+        additionalOptions.style.display = switchElement.checked ? 'none' : 'block';
+        hiddenInput.value = switchElement.checked ? '1' : '0';
+    });
 
-// Atualiza o valor do campo oculto quando o switch é alterado
-switchElement.addEventListener('change', function() {
-  switchValueInput.value = this.checked ? 1 : 0;
-});
+    // Adiciona um listener para alterações no switch
+    switchElement.addEventListener('change', function () {
+        additionalOptions.style.display = this.checked ? 'none' : 'block';
+        hiddenInput.value = this.checked ? '1' : '0';
+    });
+}
 
-// Seleciona todos os radios com o nome "agerating"
+// Função para manipular os radios de classificação etária
 const ageRatingRadios = document.querySelectorAll('input[name="agerating"]');
-
-// Seleciona o campo oculto
 const hiddenAgeRating = document.getElementById('switchValueAgeRating');
 
-// Adiciona um evento de change a cada radio
-ageRatingRadios.forEach(radio => {
-  radio.addEventListener('change', function() {
-      // Atualiza o valor do campo oculto com o valor do radio selecionado
-      hiddenAgeRating.value = this.value;
-  });
-});
+if (ageRatingRadios.length > 0 && hiddenAgeRating) {
+    ageRatingRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+            hiddenAgeRating.value = this.value;
+        });
+    });
+}
