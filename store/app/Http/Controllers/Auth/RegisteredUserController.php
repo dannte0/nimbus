@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Cloudinary\Cloudinary;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,17 +30,31 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        $cloudinary = new Cloudinary([
+        'cloud' => [
+            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_secret' => env('CLOUDINARY_API_SECRET'),
+        ],
+    ]);
+
+    if ($request->hasFile('image')) {
+        $uploadedCoverImage = $cloudinary->uploadApi()->upload($request->file('image')->getRealPath(), [
+            'folder' => 'user/picture-profile', 
+            'upload_preset' => env('CLOUDINARY_UPLOAD_PRESET', 'laravel_upload')
         ]);
+        $validated['image'] = $uploadedCoverImage['secure_url']; 
+    }
+
+
+        $user = User::create($validated);
 
         event(new Registered($user));
 

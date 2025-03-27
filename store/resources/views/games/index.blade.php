@@ -4,8 +4,10 @@
 
 @section('content')
 <div class="index">
-    <div class="row">
-        @include('components.card')
+    <div class="container">
+        <div class="row">
+            @include('components.card')
+        </div>
     </div>
 </div>
 @endsection

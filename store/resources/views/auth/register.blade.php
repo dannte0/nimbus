@@ -1,9 +1,14 @@
 <x-guest-layout>
     <img id="blah" class="image"/>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
+        <div>
+            <x-input-label for="image" :value="__('Image')" />
+            <input type="file" name="image" accept="image/*">
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />

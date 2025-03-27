@@ -13,12 +13,26 @@ use Illuminate\Support\Facades\Auth;
 class GamesController extends Controller
 {
 
-    public function welcome() : View
+    public function welcome(Request $request) : View
     {
-        $games = Game::latest()->get();
+        $games = Game::latest()
+        ->limit(20)
+        ->get();
 
-        return view('welcome',
-        [
+        $search = $request->input('search');
+
+        if($search){
+            $games = Game::where('title', 'like', '%'. $search . '%')
+            ->limit(15)
+            ->get();
+
+            return view('games.index',[
+                'games' => $games
+            ]);
+        }
+
+
+        return view('welcome',[
             'games'=> $games  
         ]);
     }
@@ -27,12 +41,9 @@ class GamesController extends Controller
     {
         $games = Game::latest()->paginate();
 
-        return view(
-            'games.index',
-            [
+        return view('games.index',[
                 'games'=> $games  
-            ]
-        );
+            ]);
     }
 
     /**

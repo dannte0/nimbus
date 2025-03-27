@@ -41,9 +41,15 @@
           <a class="nav-link" href="{{ route('suport') }}">Suport</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-primary" type="submit">Search</button>
+      <form class="d-flex" role="search" method="GET" action="/">
+        <input class="form-control me-2" 
+        type="text" 
+        name="search" 
+        id="search" 
+        placeholder="Search" 
+        aria-label="Search"
+        value="{{ old('search') }}">
+        <button class="btn btn-primary" type="submit">Submit</button>
       </form>
      
     </div>
@@ -64,7 +70,7 @@
           </a>
           <ul class="dropdown-menu" style="background-color: #1A1A1A;">
             <li><a class="dropdown-item text-light" href="{{ route('profile.edit') }}"><i class="bi bi-person-fill text-light"></i> Profile</a></li>
-            <li><a class="dropdown-item text-light" href="{{ route('game.register') }}"><i class="bi bi-plus-circle text-light"></i>  Register your game</a></li>
+            <li><a class="dropdown-item text-light" href="{{ route('games.create') }}"><i class="bi bi-plus-circle text-light"></i>  Register your game</a></li>
             <li><a class="dropdown-item text-light" href="{{ route('dashboard') }}"><i class="bi bi-folder text-light"></i>  My games</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-light" href="#"><i class="bi bi-gear text-light"></i> Settings</a></li>
@@ -89,5 +95,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
-<script src="{{ './js/script.js' }}"></script>
+<script src="{{ asset('./js/script.js') }}"></script>
 </html>

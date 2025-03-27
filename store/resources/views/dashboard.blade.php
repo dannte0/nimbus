@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
     @foreach ($games as $game)
         <div id="dashboard-card">
             <div>
@@ -19,7 +19,7 @@
                 <p>Is n't for kids.</p>
             @endif
             <p>Age rating: for {{ $game->age_rating }}. </p>
-            <a class="btn btn-primary float-end" href="{{ route('games.show', ['game'=> $game])}}">Page</a>
+            <a class="btn btn-primary float-end" href="{{ route('games.show', ['game'=> $game])}}">Page store</a>
         </div>
         @endforeach
     </div>

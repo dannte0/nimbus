@@ -1,4 +1,7 @@
 /* Main */
+* {
+    font-family: 'Poppins';
+}
 
 .user-picture {
     height: 50px;
@@ -94,7 +97,7 @@
     padding: 0px 100px;
     align-items: center;
     justify-content: center;
-    height: 650px;
+    height: 700px;
     width: 1000px;
     background-color: #282828;
 }
@@ -172,6 +175,9 @@ h1, h5 {
     display: flex;
     flex-direction: column; 
 }
+.text-content h5{
+    margin:15px 0px 15px 0px; 
+}
 #container-show h1 {
     color: #FFFFFF;
     font-family: 'Poppins';
@@ -224,4 +230,70 @@ h1, h5 {
 .index {
     height: 100vh ;
     background-color: #000000;
+}
+
+/* profile */
+
+
+.box-profile {
+    display: block;
+    margin: 0 0 100px 0;
+    background-color: #1A1A1A;
+    height: 100%;
+    width: 100vh;
+}
+#container-profile {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-profile {
+    display: flex;
+    height: 250px;
+    margin-bottom: 10px;
+}
+.info-profile img {
+    margin: 10px 0px 0px 10px;
+}
+
+.info-profile h1 {
+    font-size: 2rem;
+    margin: 100px 10px 10px 50px;
+    color: #F4F4F4;
+}
+.box-profile h2 {
+    color: #F4F4F4;
+}
+
+.info-profile h3 {
+    font-size: 1.5rem;
+    margin: 30px 0px 0px 20px;
+    color: #F4F4F4;
+}
+.info-profile h6 {
+    margin: 10px 0px 0px 20px;
+    color: #CCCCCC;
+}
+.info-profile p {
+    font-size: 1rem;
+    margin: 30px 25px 0px 20px;
+    text-align: justify;
+    color: #F4F4F4;
+}
+
+
+#game-cover img {
+    margin: 0 0 0 0;
+    object-fit: cover;
+    height: 250px;
+    width: 200px;
+}
+
+
+.game-list {
+    margin: 50px 0px 0px 15px;
+    max-width: 100%;
+    max-width: 100%;
 }

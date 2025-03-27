@@ -18,7 +18,7 @@ Route::fallback(function () {
 Route::get('/dashboard', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::view('/game-register', 'games.create')->name('game.register');
+    Route::view('/game-register', 'games.create')->name('games.create');
     Route::post('/games', [GamesController::class, 'store'])->name('games.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -5,7 +5,9 @@
 @section('content')
 
     <div class="container" id="container-show">
+        <div>
             <img src="{{ $game->cover_image }}" alt="{{ $game->title }}">
+        </div>
             <div class="text-content">
                 <h1>{{ $game->title }}</h1>
                 <h5>Developer : {{ $game->developer }}</h5>

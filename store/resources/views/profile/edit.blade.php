@@ -1,29 +1,36 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.main')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+@php
+$games = Auth::user()->games()->orderBy('created_at', 'desc')->take(5)->get()
+@endphp
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+@section('title', 'Profile')
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
+@section('content')
+    <div class="container" id="container-profile">
+        <div class="box-profile">
+            <div class="info-profile">
+                <img src="{{Auth::user()->image}}" alt="{{Auth::user()->name}}">
+                <h1>{{Auth::user()->name}}</h1>
             </div>
+      
+            <div class="game-list">
+            <h2>Games crated:</h2>
+            @foreach ($games as $game )
+                <div class="info-profile" style="margin-top:50px">
+                        <div id="game-cover">
+                            <img src="{{ $game->cover_image }}" alt="{{ $game->title }}">
+                        </div>
+                        <div id="game-info">
+                            <h3>{{ $game->title }}</h3>
+                            <h6>{{ $game->created_at->format('d/m/Y') }}</h6>
+                            <p>{{ $game->description }}</p>
+                                <a class="btn btn-primary float-end me-2" href="{{ route('games.show', ['game'=> $game])}}">See</a>
+                        </div>
+                </div>
+            @endforeach
+        </div>
+
         </div>
     </div>
-</x-app-layout>
+@endsection
